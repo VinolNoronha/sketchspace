@@ -9,7 +9,7 @@ import {
 } from "react";
 import { Canvas, PencilBrush, Path } from "fabric";
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+//Types
 
 export interface RemoteStroke {
   pathData: string;
@@ -42,7 +42,7 @@ interface FabricPathWithId extends Path {
   _pathDataString?: string;
 }
 
-// ── Component ──────────────────────────────────────────────────────────────────
+//Component
 
 const WhiteboardCanvas = forwardRef<
   WhiteboardCanvasHandle,
@@ -88,7 +88,7 @@ const WhiteboardCanvas = forwardRef<
     onRedoRef.current = onRedo;
   }, [onRedo]);
 
-  // ── Clear helper (only thing that still needs a snapshot) ────────────────────
+  //Clear helper (only thing that still needs a snapshot)
 
   const clearCanvas = useCallback(() => {
     const canvas = fabricRef.current;
@@ -100,29 +100,11 @@ const WhiteboardCanvas = forwardRef<
     canvas.renderAll();
   }, []);
 
-  // ── Imperative handle ────────────────────────────────────────────────────────
+  // Imperative handle
 
   useImperativeHandle(
     ref,
     () => ({
-      // undo() {
-      //   const canvas = fabricRef.current;
-      //   if (!canvas || myStrokes.current.length === 0) return;
-
-      //   const lastStroke = myStrokes.current.pop()!;
-      //   redoStrokes.current.push(lastStroke);
-
-      //   canvas.remove(lastStroke);
-      //   canvas.renderAll();
-
-      //   // Notify other tabs
-      //   onUndoRef.current?.({
-      //     pathData: lastStroke._pathDataString!,
-      //     color: lastStroke.stroke as string,
-      //     width: lastStroke.strokeWidth as number,
-      //   });
-      // },
-
       undo() {
         const canvas = fabricRef.current;
         if (!canvas || myStrokes.current.length === 0) return;
@@ -135,7 +117,7 @@ const WhiteboardCanvas = forwardRef<
         canvas.remove(lastStroke);
         canvas.renderAll();
 
-        console.log("[undo] sending pathData:", lastStroke._pathDataString); // ← add
+        console.log("[undo] sending pathData:", lastStroke._pathDataString);
         onUndoRef.current?.({
           pathData: lastStroke._pathDataString!,
           color: lastStroke.stroke as string,
@@ -224,7 +206,7 @@ const WhiteboardCanvas = forwardRef<
     [clearCanvas],
   );
 
-  // ── Canvas init ──────────────────────────────────────────────────────────────
+  //Canvas init
 
   useEffect(() => {
     if (!canvasElRef.current || !containerRef.current) return;
@@ -247,13 +229,13 @@ const WhiteboardCanvas = forwardRef<
 
     canvas.on("path:created", (e) => {
       const path = e.path as FabricPathWithId;
-      console.log("[path:created] raw path.path:", path.path); // ← add
+      console.log("[path:created] raw path.path:", path.path);
 
       path._pathDataString = JSON.stringify(path.path);
       console.log(
         "[path:created] _pathDataString set to:",
         path._pathDataString,
-      ); // ← add
+      );
 
       myStrokes.current.push(path);
       redoStrokes.current = [];
@@ -315,7 +297,7 @@ const WhiteboardCanvas = forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ── Brush sync ───────────────────────────────────────────────────────────────
+  //Brush sync
 
   useEffect(() => {
     const canvas = fabricRef.current;
@@ -330,8 +312,7 @@ const WhiteboardCanvas = forwardRef<
     }
   }, [brushColor, brushSize, isErasing]);
 
-  // ── Render ───────────────────────────────────────────────────────────────────
-
+  // Render
   return (
     <div
       ref={containerRef}
@@ -355,7 +336,7 @@ const WhiteboardCanvas = forwardRef<
 
 export default WhiteboardCanvas;
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+//Helpers
 
 function triggerDownload(dataUrl: string, filename: string) {
   const a = document.createElement("a");

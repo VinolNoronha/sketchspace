@@ -6,4 +6,23 @@ const keycloak = new Keycloak({
   clientId: "whiteboard-client",
 });
 
+let initialized = false;
+
+export async function initKeycloak(): Promise<boolean> {
+  if (initialized || keycloak.authenticated) {
+    initialized = true;
+    return keycloak.authenticated ?? false;
+  }
+
+  const authenticated = await keycloak.init({
+    onLoad: "check-sso",
+    pkceMethod: "S256",
+    silentCheckSsoRedirectUri:
+      window.location.origin + "/silent-check-sso.html",
+  });
+
+  initialized = true;
+  return authenticated;
+}
+
 export default keycloak;

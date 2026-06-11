@@ -30,6 +30,8 @@ A real-time collaborative whiteboard application built with Next.js, FastAPI, an
 - **Real-Time Stroke Sync** — All drawing actions broadcast instantly via WebSocket
 - **Real-Time Cursor Sync** — See other users' cursors moving live
 - **Keycloak Authentication** — Only authenticated users can access the whiteboard
+- User Registration via Keycloak
+- Route Protection for Dashboard and Whiteboard Sessions
 - **Responsive Design** — Works on desktop and mobile
 
 ---
@@ -96,21 +98,25 @@ This starts:
 
 First run takes 3–5 minutes to build.
 
-### 3. Configure Keycloak
+### 3. Open the Application
 
-On first run, Keycloak starts fresh. Set it up once:
+After Docker Compose starts:
 
-1. Go to `http://localhost:8080`
-2. Click **Administration Console** → login with `admin` / `admin`
-3. **Create Realm** → name: `whiteboard-realm`
-4. **Create Client**:
-   - Client ID: `whiteboard-client`
-   - Client Authentication: **OFF**
-   - Valid Redirect URIs: `http://localhost:3000/*`
-   - Web Origins: `http://localhost:3000`
-5. **Create User**:
-   - Username: `vinol`
-   - Credentials tab → Set password → `password123` → Temporary: **OFF**
+Frontend:
+http://localhost:3000
+
+Keycloak Admin Console:
+http://localhost:8080
+
+Admin Credentials:
+
+Username: admin
+
+Password: admin
+
+The whiteboard-realm and whiteboard-client are imported automatically during startup.
+
+No manual Keycloak configuration is required.
 
 ### 4. Open the app
 

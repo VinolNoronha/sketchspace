@@ -4,19 +4,6 @@ import keycloak from "@/services/keycloak";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-// const handleLogin = async () => {
-//   await keycloak.login({
-//     redirectUri: "http://localhost:3000/login",
-//   });
-// };
-// const handleLogin = async () => {
-//   await keycloak.init({
-//     onLoad: "login-required",
-//     pkceMethod: "S256",
-//   });
-
-//   window.location.href = "/dashboard";
-// };
 export default function LoginPage() {
   const router = useRouter();
   // useEffect(() => {
@@ -68,18 +55,11 @@ export default function LoginPage() {
   return (
     <div
       className="container-fluid d-flex align-items-center justify-content-center"
-      style={{
-        minHeight: "100vh",
-        background: "#F8FAFC",
-      }}
+      style={{ minHeight: "100vh", background: "#F8FAFC" }}
     >
       <div
         className="card border-0 shadow-sm"
-        style={{
-          width: "100%",
-          maxWidth: "420px",
-          borderRadius: "16px",
-        }}
+        style={{ width: "100%", maxWidth: "420px", borderRadius: "16px" }}
       >
         <div className="card-body p-5">
           <div className="text-center mb-4">
@@ -96,54 +76,28 @@ export default function LoginPage() {
             >
               ✏️
             </div>
-
             <h2 className="fw-bold mb-2">Sign In</h2>
-
             <p className="text-secondary mb-0">
               Access your collaborative workspace.
             </p>
           </div>
 
-          <form>
-            <div className="mb-3">
-              <label className="form-label">Email Address</label>
-
-              <input
-                type="email"
-                className="form-control"
-                placeholder="name@example.com"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="form-label">Password</label>
-
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <button
-              type="button"
-              className="btn w-100 text-white fw-medium"
-              style={{
-                background: "#2563EB",
-                border: "none",
-                height: "46px",
-                borderRadius: "8px",
-              }}
-              onClick={handleLogin}
-            >
-              Continue
-            </button>
-          </form>
+          <button
+            type="button"
+            className="btn w-100 text-white fw-medium"
+            style={{
+              background: "#2563EB",
+              border: "none",
+              height: "46px",
+              borderRadius: "8px",
+            }}
+            onClick={handleLogin}
+          >
+            Continue with Keycloak
+          </button>
 
           <p className="text-center mt-4 mb-0 text-secondary">
-            Dont have an account?{" "}
+            Don4 t have an account?{" "}
             <Link
               href="/signup"
               className="text-decoration-none fw-semibold"

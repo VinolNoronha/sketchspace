@@ -190,7 +190,7 @@ export default function Toolbar({
   );
 }
 
-// ── Small reusable pieces ──────────────────────────────────────────────────────
+//Small reusable pieces
 
 function Divider() {
   return (
@@ -240,7 +240,7 @@ function ToolBtn({
   );
 }
 
-// ── Icons (inline SVG, no extra dep) ──────────────────────────────────────────
+//Icons (inline SVG, no extra dep)
 
 function UndoIcon() {
   return (

@@ -1,21 +1,20 @@
+"use client";
+
 import Link from "next/link";
 
 export default function SignupPage() {
+  const handleSignup = () => {
+    window.location.href = `http://localhost:8080/realms/whiteboard-realm/protocol/openid-connect/registrations?client_id=whiteboard-client&response_type=code&redirect_uri=http://localhost:3000/login`;
+  };
+
   return (
     <div
       className="container-fluid d-flex align-items-center justify-content-center"
-      style={{
-        minHeight: "100vh",
-        background: "#F8FAFC",
-      }}
+      style={{ minHeight: "100vh", background: "#F8FAFC" }}
     >
       <div
         className="card border-0 shadow-sm"
-        style={{
-          width: "100%",
-          maxWidth: "420px",
-          borderRadius: "16px",
-        }}
+        style={{ width: "100%", maxWidth: "420px", borderRadius: "16px" }}
       >
         <div className="card-body p-5">
           <div className="text-center mb-4">
@@ -32,72 +31,24 @@ export default function SignupPage() {
             >
               ✏️
             </div>
-
             <h2 className="fw-bold mb-2">Create Account</h2>
-
             <p className="text-secondary mb-0">
               Start collaborating in real-time.
             </p>
           </div>
 
-          <form>
-            <div className="mb-3">
-              <label className="form-label">Full Name</label>
-
-              <input
-                type="text"
-                className="form-control"
-                placeholder="John Doe"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Email Address</label>
-
-              <input
-                type="email"
-                className="form-control"
-                placeholder="name@example.com"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Create password"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="form-label">Confirm Password</label>
-
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Confirm password"
-                style={{ height: "46px" }}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="btn w-100 text-white fw-medium"
-              style={{
-                background: "#2563EB",
-                border: "none",
-                height: "46px",
-                borderRadius: "8px",
-              }}
-            >
-              Create Account
-            </button>
-          </form>
+          <button
+            onClick={handleSignup}
+            className="btn w-100 text-white fw-medium"
+            style={{
+              background: "#2563EB",
+              border: "none",
+              height: "46px",
+              borderRadius: "8px",
+            }}
+          >
+            Continue with Keycloak
+          </button>
 
           <p className="text-center mt-4 mb-0 text-secondary">
             Already have an account?{" "}
